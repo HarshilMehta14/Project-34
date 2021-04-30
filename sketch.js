@@ -4,11 +4,15 @@ const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
 var engine, world;
-var ground, hero, rope;
+var ground, hero, monster, rope;
 var box1, box2, box3, box4, box5, box6, box7;
 var box8 ,box9 ,box10 ,box11 ,box12, box13 ,box14;
 var box15 ,box16 ,box17 ,box18 ,box19 ,box20 ,box21;
+var bg;
 
+function preload(){
+    bg = loadImage("images/GamingBackground.png");
+}
 
 function setup(){
     var canvas = createCanvas(1500,700);
@@ -19,7 +23,7 @@ function setup(){
 
     hero = new Hero(350, 400, 50);
 
-    rope = new Rope(hero.body, {x : 350, y : 50});
+    rope = new Rope(hero.body, {x : 400, y : 30});
 
     box1 = new Box(750, 100);
     box2 = new Box(750, 150);
@@ -52,10 +56,11 @@ function setup(){
     box26 = new Box(900, 350);
     box27 = new Box(900, 400);
 
+    monster = new Monster(1300, 300);
 }
 
 function draw(){
-    background(0);
+    background(bg);
     Engine.update(engine);
     
     ground.display();
@@ -95,11 +100,13 @@ function draw(){
     box26.display();
     box27.display();
 
+    monster.display();
 }
 function mouseDragged()
 {
     Matter.Body.setPosition(hero.body, {x: mouseX, y: mouseY});
 }
+
 function mouseReleased()
 {
     Matter.Body.applyForce(hero.body, hero.body.position, {x:50, y:-30});

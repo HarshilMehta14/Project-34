@@ -4,8 +4,10 @@ class Hero {
           'friction':1.0,
           'density':1.0
       }
-      this.body = Bodies.circle(x, y, 50, options);
-      this.image = loadImage()
+      this.body = Bodies.circle(x, y, 70, options);
+      this.image = loadImage("images/Superhero-01.png");
+      this.x = x;
+      this.y = y;
       this.radius = 50;
 
       World.add(world, this.body);
@@ -18,10 +20,9 @@ class Hero {
       fill(255,255,0);
       translate(p.x, p.y);
       rotate(angle);
+
       imageMode(CENTER);
-      ellipseMode(RADIUS);
-      ellipse(0, 0, this.radius, this.radius);
-      
+      image(this.image, this.x-350, this.y-390, 150, 100); 
       pop();
     }
 }
