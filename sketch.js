@@ -19,7 +19,7 @@ function setup(){
     engine = Engine.create();
     world = engine.world;
 
-    ground = new Ground(500, 500, 1000, 10);
+    ground = new Ground(500, 500, 1200, 10);
 
     hero = new Hero(350, 400, 50);
 
@@ -56,12 +56,16 @@ function setup(){
     box26 = new Box(900, 350);
     box27 = new Box(900, 400);
 
-    monster = new Monster(1300, 300);
+    monster = new Monster(1000, 200);
 }
 
 function draw(){
     background(bg);
     Engine.update(engine);
+    
+    if(monster.velocityX > 0){
+        monster.change_image();
+    }
     
     ground.display();
 
@@ -101,6 +105,8 @@ function draw(){
     box27.display();
 
     monster.display();
+
+    
 }
 function mouseDragged()
 {
